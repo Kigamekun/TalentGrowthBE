@@ -5,7 +5,14 @@ module.exports = {
     getAllUsers: async (req, res) => {
         try {
             const users = await User.findAll();
-            res.json(users);
+            const usersWithImageUrl = users.map(user => {
+                return {
+                    ...user.toJSON(),
+                    thumbUrl: `/uploads/${user.thumb}`, // Membuat URL untuk thumbnail
+                    coverUrl: `/uploads/${user.cover}` // Membuat URL untuk cover
+                };
+            });
+            res.json(usersWithImageUrl);
         } catch (error) {
             console.error('Error fetching users:', error);
             res.status(500).json({ error: 'Failed to fetch users' });
@@ -28,9 +35,11 @@ module.exports = {
     },
 
     createUser: async (req, res) => {
-        const { name, email,phone,password,address,birth } = req.body;
+        const { name, email, phone, about, birth } = req.body;
+        const thumb = req.files['thumb'][0].filename; 
+        const cover = req.files['cover'][0].filename; 
         try {
-            const newUser = await User.create({ name, email,phone,password,address,birth });
+            const newUser = await User.create({ name, email, phone, about, birth, thumb, cover });
             res.status(201).json({ message: 'User created successfully', user: newUser });
         } catch (error) {
             console.error('Error creating user:', error);

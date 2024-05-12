@@ -3,6 +3,9 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+const multer = require('multer');
+
+
 // Initialize Express app
 const app = express();
 
@@ -16,6 +19,9 @@ app.use(bodyParser.json());
 
 // Set up static folder
 app.use(express.static(path.join(__dirname, 'public')));
+const uploadsPath = path.join(__dirname, 'uploads');
+
+app.use('/uploads', express.static(uploadsPath));
 
 // Import database configuration
 const sequelize = require('./app/config/database');

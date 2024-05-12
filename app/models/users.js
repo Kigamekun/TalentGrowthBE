@@ -6,6 +6,18 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  thumb: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  about: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  cover: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -15,19 +27,11 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   birth: {
     type: DataTypes.DATE,
     allowNull: false
   }
-  
+
 });
 
 module.exports = User;
