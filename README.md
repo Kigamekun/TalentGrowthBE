@@ -70,7 +70,7 @@ This application allows you to perform Formulir operation operations on user dat
 ### Create User
 ```
     
-URL: /api/users
+URL: /users
 Method: POST
 Description: Create a new user.
 Request Body:
@@ -88,7 +88,7 @@ Copy code
 
 ### Get Users
 ```
-URL: /api/users
+URL: /users
 Method: GET
 Description: Retrieve all users.
 Response:
